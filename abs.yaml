@@ -1,0 +1,3 @@
+channels:
+    - https://staging.continuum.io/prefect/fs/parse-feedstock/pr2/ae16b95
+    - https://staging.continuum.io/prefect/fs/parse_type-feedstock/pr2/eaa4d46
