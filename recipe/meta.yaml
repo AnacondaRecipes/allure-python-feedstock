@@ -11,12 +11,11 @@ source:
   sha256: 9db4db2133a52e48af043fbb3bb920a77886f64a6a1c8cd56adee41828487fc6
 
 build:
-  number: 1
+  number: 0
+  skip: true  # [py<38]
 
 outputs:
   - name: allure-python-commons
-    build:
-      skip: true  # [py<38]
     requirements:
       host:
         - pip
@@ -34,8 +33,6 @@ outputs:
         - allure
         - allure_commons
   - name: allure-behave
-    build:
-      skip: true  # [py<38]
     requirements:
       host:
         - pip
@@ -52,8 +49,6 @@ outputs:
       imports:
         - allure_behave
   - name: allure-nose2
-    build:
-      skip: true  # [py<38]
     requirements:
       host:
         - pip
@@ -70,8 +65,6 @@ outputs:
       imports:
         - allure_nose2
   - name: allure-pytest
-    build:
-      skip: true  # [py<38]
     requirements:
       host:
         - pip
@@ -88,8 +81,6 @@ outputs:
       imports:
         - allure_pytest
   - name: allure-pytest-bdd
-    build:
-      skip: true  # [py<38]
     requirements:
       host:
         - pip
@@ -107,8 +98,6 @@ outputs:
       imports:
         - allure_pytest_bdd
   - name: allure-robotframework
-    build:
-      skip: true  # [py<38]
     requirements:
       host:
         - pip
@@ -135,7 +124,7 @@ about:
   summary: Allure integrations for Python test frameworks
   description: |
     Allure Framework is a flexible lightweight multi-language test report tool that not only shows a very concise representation of what have been tested in a neat web report form, but allows everyone participating in the development process to extract maximum of useful information from everyday execution of tests.
-  doc_url: https://allurereport.org/docs
+  doc_url: https://allurereport.org
 extra:
   recipe-maintainers:
     - kenodegard
