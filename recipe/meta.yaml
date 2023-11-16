@@ -102,24 +102,24 @@ outputs:
     test:
       imports:
         - allure_pytest_bdd
-  - name: allure-robotframework
-    requirements:
-      host:
-        - pip
-        - python 
-        - setuptools
-        - wheel
-        - setuptools-scm 7.1.0
-      run:
-        - python
-        - robotframework
-        - {{ pin_subpackage('allure-python-commons', exact=True) }}
-    script: install.sh   # [unix]
-    script: install.bat  # [win]
-    test:
-      imports:
-        - AllureLibrary
-        - allure_robotframework
+  # - name: allure-robotframework
+  #   requirements:
+  #     host:
+  #       - pip
+  #       - python 
+  #       - setuptools
+  #       - wheel
+  #       - setuptools-scm 7.1.0
+  #     run:
+  #       - python
+  #       - robotframework
+  #       - {{ pin_subpackage('allure-python-commons', exact=True) }}
+  #   script: install.sh   # [unix]
+  #   script: install.bat  # [win]
+  #   test:
+  #     imports:
+  #       - AllureLibrary
+  #       - allure_robotframework
 
 about:
   home: https://github.com/allure-framework/allure-python
