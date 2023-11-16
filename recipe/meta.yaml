@@ -27,7 +27,8 @@ outputs:
         - python
         - attrs >=16.0.0
         - pluggy >=0.4.0
-    script: install.sh
+    script: install.sh   # [unix]
+    script: install.bat  # [win]
     test:
       imports:
         - allure
@@ -44,7 +45,8 @@ outputs:
         - python
         - behave >=1.2.5
         - {{ pin_subpackage('allure-python-commons', exact=True) }}
-    script: install.sh
+    script: install.sh   # [unix]
+    script: install.bat  # [win]
     test:
       imports:
         - allure_behave
@@ -60,7 +62,8 @@ outputs:
         - python
         - nose2
         - {{ pin_subpackage('allure-python-commons', exact=True) }}
-    script: install.sh
+    script: install.sh   # [unix]
+    script: install.bat  # [win]
     test:
       imports:
         - allure_nose2
@@ -76,7 +79,8 @@ outputs:
         - python
         - pytest >=4.5.0
         - {{ pin_subpackage('allure-python-commons', exact=True) }}
-    script: install.sh
+    script: install.sh   # [unix]
+    script: install.bat  # [win]
     test:
       imports:
         - allure_pytest
@@ -93,7 +97,8 @@ outputs:
         - pytest >=4.5.0
         - pytest-bdd >=3.0.0
         - {{ pin_subpackage('allure-python-commons', exact=True) }}
-    script: install.sh
+    script: install.sh   # [unix]
+    script: install.bat  # [win]
     test:
       imports:
         - allure_pytest_bdd
@@ -109,7 +114,8 @@ outputs:
         - python
         - robotframework
         - {{ pin_subpackage('allure-python-commons', exact=True) }}
-    script: install.sh
+    script: install.sh   # [unix]
+    script: install.bat  # [win]
     test:
       imports:
         - AllureLibrary
