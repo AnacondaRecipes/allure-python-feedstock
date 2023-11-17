@@ -1,6 +1,2 @@
 channels:
-    - https://staging.continuum.io/prefect/fs/behave-feedstock/pr2/7b3301d
-    - https://staging.continuum.io/prefect/fs/parse-feedstock/pr2/ae16b95
-    - https://staging.continuum.io/prefect/fs/parse_type-feedstock/pr2/eaa4d46
-    - https://staging.continuum.io/prefect/fs/nose2-feedstock/pr3/b32b32d
-    - https://staging.continuum.io/prefect/fs/pytest-bdd-feedstock/pr2/eda5af4
+    - https://staging.continuum.io/prefect/fs/robotframework-feedstock/pr2/4f56b0f
