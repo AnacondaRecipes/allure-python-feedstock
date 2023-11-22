@@ -22,7 +22,7 @@ outputs:
         - python
         - setuptools
         - wheel
-        - setuptools-scm 7.1.0
+        - setuptools-scm
       run:
         - python
         - attrs >=16.0.0
@@ -40,7 +40,7 @@ outputs:
         - python
         - setuptools
         - wheel
-        - setuptools-scm 7.1.0
+        - setuptools-scm
       run:
         - python
         - behave >=1.2.5
@@ -57,7 +57,7 @@ outputs:
         - python
         - setuptools
         - wheel
-        - setuptools-scm 7.1.0
+        - setuptools-scm
       run:
         - python
         - nose2
@@ -74,7 +74,7 @@ outputs:
         - python
         - setuptools
         - wheel
-        - setuptools-scm 7.1.0
+        - setuptools-scm
       run:
         - python
         - pytest >=4.5.0
@@ -91,7 +91,7 @@ outputs:
         - python
         - setuptools
         - wheel
-        - setuptools-scm 7.1.0
+        - setuptools-scm
       run:
         - python
         - pytest >=4.5.0
@@ -109,7 +109,7 @@ outputs:
         - python 
         - setuptools
         - wheel
-        - setuptools-scm 7.1.0
+        - setuptools-scm
       run:
         - python
         - robotframework
