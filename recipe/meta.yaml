@@ -12,7 +12,10 @@ source:
 
 build:
   number: 0
-  skip: True  # [py<38]
+  # The behave pkg for py313 is not available, and it is impossible to release behave for py313,
+  # as it needs setuptools 52.0.0 with version py313 and distutils required inside.
+  # The distutils is deprecated in Python > 3.11
+  skip: True  # [py<38 or py>312]
 
 outputs:
   - name: allure-python-commons
