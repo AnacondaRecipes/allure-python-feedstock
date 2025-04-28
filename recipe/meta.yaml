@@ -164,7 +164,7 @@ outputs:
         # Needs pytest-check, which is not available in the main channel.
         - pytest -v -k "not test_pytest_check" tests/allure_pytest  # [not win]
         # AssertionError: Expected greater 1745831725925, but 1745831725859.
-        - pytest -v -k "not test_pytest_check or test_duration" tests/allure_pytest  # [win]
+        - pytest -v --ignore=tests/allure_pytest/acceptance/duration/duration_time_test.py -k "not test_pytest_check" tests/allure_pytest  # [win]
       requires:
         - pip
         - {{ pin_subpackage('allure-python-commons-test', exact=True) }}
