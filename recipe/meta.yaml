@@ -33,6 +33,10 @@ outputs:
       imports:
         - allure
         - allure_commons
+      commands:
+        - pip check
+      requires:
+        - pip
 
   - name: allure-python-commons-test
     script: install.sh   # [unix]
@@ -50,6 +54,10 @@ outputs:
     test:
       imports:
         - allure_commons_test
+      commands:
+        - pip check
+      requires:
+        - pip
 
   - name: allure-behave
     build:
@@ -80,8 +88,10 @@ outputs:
       imports:
         - allure_behave
       commands:
+        - pip check
         - pytest -v tests/allure_behave
       requires:
+        - pip
         - {{ pin_subpackage('allure-python-commons-test', exact=True) }}
         - pytest
         - docutils
@@ -113,8 +123,10 @@ outputs:
       imports:
         - allure_nose2
       commands:
+        - pip check
         - pytest -v tests/allure_nose2
       requires:
+        - pip
         - {{ pin_subpackage('allure-python-commons-test', exact=True) }}
         - pytest
         - docutils
@@ -147,12 +159,14 @@ outputs:
       imports:
         - allure_pytest
       commands:
+        - pip check
         # ImportError: Error importing plugin "check": No module named 'check'
         # Needs pytest-check, which is not available in the main channel.
         - pytest -v -k "not test_pytest_check" tests/allure_pytest  # [not win]
         # AssertionError: Expected greater 1745831725925, but 1745831725859.
         - pytest -v -k "not test_pytest_check or test_duration" tests/allure_pytest  # [win]
       requires:
+        - pip
         - {{ pin_subpackage('allure-python-commons-test', exact=True) }}
         - pytest
         - pytest-xdist
@@ -189,8 +203,10 @@ outputs:
       imports:
         - allure_pytest_bdd
       commands:
+        - pip check
         - pytest -v tests/allure_pytest_bdd --clean-alluredir
       requires:
+        - pip
         - {{ pin_subpackage('allure-python-commons-test', exact=True) }}
         - pytest <8.0
         - pytest-bdd <8.0
@@ -225,8 +241,10 @@ outputs:
         - AllureLibrary
         - allure_robotframework
       commands:
+        - pip check
         - pytest -v tests/allure_robotframework
       requires:
+        - pip
         - {{ pin_subpackage('allure-python-commons-test', exact=True) }}
         - pytest
         - docutils
