@@ -52,10 +52,11 @@ outputs:
         - allure_commons_test
 
   - name: allure-behave
-    # The behave pkg for py313 is not available, and it is impossible to release behave for py313,
-    # as it needs setuptools 52.0.0 with version py313 and distutils required inside.
-    # The distutils is deprecated in Python > 3.11
-    skip: True  # [py>311]
+    build:
+      # The behave pkg for py313 is not available, and it is impossible to release behave for py313,
+      # as it needs setuptools 52.0.0 with version py313 and distutils required inside.
+      # The distutils is deprecated in Python > 3.11
+      skip: True  # [py>311]
     script: install.sh   # [unix]
     script: install.bat  # [win]
     requirements:
