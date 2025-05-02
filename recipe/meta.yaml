@@ -88,6 +88,7 @@ outputs:
       imports:
         - allure_behave
       commands:
+        - echo on  # [win]
         - pip check
         - pytest -v tests/allure_behave
       requires:
