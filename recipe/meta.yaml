@@ -268,3 +268,5 @@ extra:
   recipe-maintainers:
     - kenodegard
     - nsoranzo
+  skip-lints:
+    - missing_test_requirement_pip
