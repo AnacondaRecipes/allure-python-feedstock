@@ -1,5 +1,5 @@
 {% set name = "allure-python" %}
-{% set version = "2.13.2" %}
+{% set version = "2.14.0" %}
 
 
 package:
@@ -8,11 +8,11 @@ package:
 
 source:
   url: https://github.com/allure-framework/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: 9db4db2133a52e48af043fbb3bb920a77886f64a6a1c8cd56adee41828487fc6
+  sha256: 17af5ba84834015f6f0f0929277aa41d0a9760c9ed29b0506f3810f7fe23bb30
 
 build:
   number: 0
-  skip: true  # [py<38]
+  skip: True  # [py<38]
 
 outputs:
   - name: allure-python-commons
@@ -33,8 +33,38 @@ outputs:
       imports:
         - allure
         - allure_commons
+      commands:
+        - pip check
+      requires:
+        - pip
+
+  - name: allure-python-commons-test
+    script: install.sh   # [unix]
+    script: install.bat  # [win]
+    requirements:
+      host:
+        - pip
+        - python
+        - setuptools
+        - wheel
+        - setuptools-scm
+      run:
+        - python
+        - pyhamcrest >=1.9.0
+    test:
+      imports:
+        - allure_commons_test
+      commands:
+        - pip check
+      requires:
+        - pip
 
   - name: allure-behave
+    build:
+      # The behave pkg for py313 is not available, and it is impossible to release behave for py313,
+      # as it needs setuptools 52.0.0 with version py313 and distutils required inside.
+      # The distutils is deprecated in Python > 3.11
+      skip: True  # [py>311]
     script: install.sh   # [unix]
     script: install.bat  # [win]
     requirements:
@@ -49,8 +79,26 @@ outputs:
         - behave >=1.2.5
         - {{ pin_subpackage('allure-python-commons', exact=True) }}
     test:
+      source_files:
+        - allure-behave/examples/*
+        - tests/conftest.py
+        - tests/e2e.py
+        - tests/__init__.py
+        - tests/allure_behave
       imports:
         - allure_behave
+      commands:
+        - pip check
+        - pytest -v tests/allure_behave
+      requires:
+        - pip
+        - {{ pin_subpackage('allure-python-commons-test', exact=True) }}
+        - pytest
+        - docutils
+        - mock
+        - packaging
+        - pyhamcrest
+        - pygments
 
   - name: allure-nose2
     script: install.sh   # [unix]
@@ -67,8 +115,25 @@ outputs:
         - nose2
         - {{ pin_subpackage('allure-python-commons', exact=True) }}
     test:
+      source_files:
+        - tests/conftest.py
+        - tests/e2e.py
+        - tests/__init__.py
+        - tests/allure_nose2
       imports:
         - allure_nose2
+      commands:
+        - pip check
+        - pytest -v tests/allure_nose2
+      requires:
+        - pip
+        - {{ pin_subpackage('allure-python-commons-test', exact=True) }}
+        - pytest
+        - docutils
+        - mock
+        - packaging
+        - pyhamcrest
+        - pygments
 
   - name: allure-pytest
     script: install.sh   # [unix]
@@ -85,8 +150,33 @@ outputs:
         - pytest >=4.5.0
         - {{ pin_subpackage('allure-python-commons', exact=True) }}
     test:
+      source_files:
+        - allure-pytest/examples/*
+        - tests/conftest.py
+        - tests/e2e.py
+        - tests/__init__.py
+        - tests/allure_pytest
       imports:
         - allure_pytest
+      commands:
+        - pip check
+        # ImportError: Error importing plugin "check": No module named 'check'
+        # Needs pytest-check, which is not available in the main channel.
+        - pytest -v -k "not test_pytest_check" tests/allure_pytest  # [not win]
+        # AssertionError: Expected greater 1745831725925, but 1745831725859.
+        - pytest -v --ignore=tests/allure_pytest/acceptance/duration/duration_time_test.py -k "not test_pytest_check" tests/allure_pytest  # [win]
+      requires:
+        - pip
+        - {{ pin_subpackage('allure-python-commons-test', exact=True) }}
+        - pytest
+        - pytest-xdist
+        - pytest-rerunfailures
+        - pytest-flakes
+        - docutils
+        - mock
+        - packaging
+        - pyhamcrest
+        - pygments
 
   - name: allure-pytest-bdd
     script: install.sh   # [unix]
@@ -101,11 +191,30 @@ outputs:
       run:
         - python
         - pytest >=4.5.0
-        - pytest-bdd >=3.0.0
+        - pytest-bdd >=5.0.0
         - {{ pin_subpackage('allure-python-commons', exact=True) }}
     test:
+      source_files:
+        - tests/conftest.py
+        - tests/e2e.py
+        - tests/__init__.py
+        - tests/allure_pytest_bdd
+        - tests/allure_pytest
       imports:
         - allure_pytest_bdd
+      commands:
+        - pip check
+        - pytest -v tests/allure_pytest_bdd --clean-alluredir
+      requires:
+        - pip
+        - {{ pin_subpackage('allure-python-commons-test', exact=True) }}
+        - pytest <8.0
+        - pytest-bdd <8.0
+        - docutils
+        - mock
+        - packaging
+        - pyhamcrest
+        - pygments
 
   - name: allure-robotframework
     script: install.sh   # [unix]
@@ -122,9 +231,27 @@ outputs:
         - robotframework
         - {{ pin_subpackage('allure-python-commons', exact=True) }}
     test:
+      source_files:
+        - allure-robotframework/examples/*
+        - tests/conftest.py
+        - tests/e2e.py
+        - tests/__init__.py
+        - tests/allure_robotframework
       imports:
         - AllureLibrary
         - allure_robotframework
+      commands:
+        - pip check
+        - pytest -v tests/allure_robotframework
+      requires:
+        - pip
+        - {{ pin_subpackage('allure-python-commons-test', exact=True) }}
+        - pytest
+        - docutils
+        - mock
+        - packaging
+        - pyhamcrest
+        - pygments
 
 about:
   home: https://github.com/allure-framework/allure-python
