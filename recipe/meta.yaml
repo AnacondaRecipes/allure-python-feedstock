@@ -20,7 +20,7 @@ outputs:
     script: install.bat  # [win]
     requirements:
       host:
-        - pip
+        - pip 25.0
         - python
         - setuptools
         - wheel
@@ -36,14 +36,14 @@ outputs:
       commands:
         - pip check
       requires:
-        - pip
+        - pip 25.0
 
   - name: allure-python-commons-test
     script: install.sh   # [unix]
     script: install.bat  # [win]
     requirements:
       host:
-        - pip
+        - pip 25.0
         - python
         - setuptools
         - wheel
@@ -57,7 +57,7 @@ outputs:
       commands:
         - pip check
       requires:
-        - pip
+        - pip 25.0
 
   - name: allure-behave
     build:
@@ -69,7 +69,7 @@ outputs:
     script: install.bat  # [win]
     requirements:
       host:
-        - pip
+        - pip 25.0
         - python
         - setuptools
         - wheel
@@ -88,11 +88,10 @@ outputs:
       imports:
         - allure_behave
       commands:
-        - echo on  # [win]
         - pip check
         - pytest -v tests/allure_behave
       requires:
-        - pip
+        - pip 25.0
         - {{ pin_subpackage('allure-python-commons-test', exact=True) }}
         - pytest
         - docutils
@@ -106,7 +105,7 @@ outputs:
     script: install.bat  # [win]
     requirements:
       host:
-        - pip
+        - pip 25.0
         - python
         - setuptools
         - wheel
@@ -127,7 +126,7 @@ outputs:
         - pip check
         - pytest -v tests/allure_nose2
       requires:
-        - pip
+        - pip 25.0
         - {{ pin_subpackage('allure-python-commons-test', exact=True) }}
         - pytest
         - docutils
@@ -141,7 +140,7 @@ outputs:
     script: install.bat  # [win]
     requirements:
       host:
-        - pip
+        - pip 25.0
         - python
         - setuptools
         - wheel
@@ -167,7 +166,7 @@ outputs:
         # AssertionError: Expected greater 1745831725925, but 1745831725859.
         - pytest -v --ignore=tests/allure_pytest/acceptance/duration/duration_time_test.py -k "not test_pytest_check" tests/allure_pytest  # [win]
       requires:
-        - pip
+        - pip 25.0
         - {{ pin_subpackage('allure-python-commons-test', exact=True) }}
         - pytest
         - pytest-xdist
@@ -184,7 +183,7 @@ outputs:
     script: install.bat  # [win]
     requirements:
       host:
-        - pip
+        - pip 25.0
         - python
         - setuptools
         - wheel
@@ -207,7 +206,7 @@ outputs:
         - pip check
         - pytest -v tests/allure_pytest_bdd --clean-alluredir
       requires:
-        - pip
+        - pip 25.0
         - {{ pin_subpackage('allure-python-commons-test', exact=True) }}
         - pytest <8.0
         - pytest-bdd <8.0
@@ -222,7 +221,7 @@ outputs:
     script: install.bat  # [win]
     requirements:
       host:
-        - pip
+        - pip 25.0
         - python 
         - setuptools
         - wheel
@@ -245,7 +244,7 @@ outputs:
         - pip check
         - pytest -v tests/allure_robotframework
       requires:
-        - pip
+        - pip 25.0
         - {{ pin_subpackage('allure-python-commons-test', exact=True) }}
         - pytest
         - docutils
