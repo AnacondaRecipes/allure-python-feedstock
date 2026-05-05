@@ -1,6 +1,5 @@
 {% set name = "allure-python" %}
-{% set version = "2.14.0" %}
-
+{% set version = "2.15.3" %}
 
 package:
   name: {{ name|lower }}
@@ -8,15 +7,15 @@ package:
 
 source:
   url: https://github.com/allure-framework/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: 17af5ba84834015f6f0f0929277aa41d0a9760c9ed29b0506f3810f7fe23bb30
+  sha256: e25166a57ca34c762c85d5f0b07efdd9bb527c1cde5bb605841e4baad35435ec
 
 build:
   number: 0
-  skip: True  # [py<38]
+  skip: true  # [py<38]
 
 outputs:
   - name: allure-python-commons
-    script: install.sh   # [unix]
+    script: install.sh  # [unix]
     script: install.bat  # [win]
     requirements:
       host:
@@ -37,9 +36,8 @@ outputs:
         - pip check
       requires:
         - pip !=25.1
-
   - name: allure-python-commons-test
-    script: install.sh   # [unix]
+    script: install.sh  # [unix]
     script: install.bat  # [win]
     requirements:
       host:
@@ -58,14 +56,13 @@ outputs:
         - pip check
       requires:
         - pip !=25.1
-
   - name: allure-behave
     build:
       # The behave pkg for py313 is not available, and it is impossible to release behave for py313,
       # as it needs setuptools 52.0.0 with version py313 and distutils required inside.
       # The distutils is deprecated in Python > 3.11
-      skip: True  # [py>311]
-    script: install.sh   # [unix]
+      skip: true  # [py>311]
+    script: install.sh  # [unix]
     script: install.bat  # [win]
     requirements:
       host:
@@ -99,9 +96,8 @@ outputs:
         - packaging
         - pyhamcrest
         - pygments
-
   - name: allure-nose2
-    script: install.sh   # [unix]
+    script: install.sh  # [unix]
     script: install.bat  # [win]
     requirements:
       host:
@@ -134,9 +130,8 @@ outputs:
         - packaging
         - pyhamcrest
         - pygments
-
   - name: allure-pytest
-    script: install.sh   # [unix]
+    script: install.sh  # [unix]
     script: install.bat  # [win]
     requirements:
       host:
@@ -177,9 +172,8 @@ outputs:
         - packaging
         - pyhamcrest
         - pygments
-
   - name: allure-pytest-bdd
-    script: install.sh   # [unix]
+    script: install.sh  # [unix]
     script: install.bat  # [win]
     requirements:
       host:
@@ -215,14 +209,13 @@ outputs:
         - packaging
         - pyhamcrest
         - pygments
-
   - name: allure-robotframework
-    script: install.sh   # [unix]
+    script: install.sh  # [unix]
     script: install.bat  # [win]
     requirements:
       host:
         - pip !=25.1
-        - python 
+        - python
         - setuptools
         - wheel
         - setuptools-scm
@@ -263,7 +256,7 @@ about:
   description: |
     Allure Framework is a flexible lightweight multi-language test report tool that not only shows a very concise representation of what have been tested in a neat web report form, but allows everyone participating in the development process to extract maximum of useful information from everyday execution of tests.
   doc_url: https://allurereport.org/docs/
-  
+
 extra:
   recipe-maintainers:
     - kenodegard
