@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/allure-framework/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: 9abc3da20209a89d082fc5f7bd197f5ef7438c2f88a3a4012918ffe6c48e98c4
+  sha256: dbb09874b9499d5db032e8cc85a7a139195dcbfd39994c5de077927ad552b86b
 
 build:
   number: 0
