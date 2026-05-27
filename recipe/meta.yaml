@@ -137,7 +137,9 @@ outputs:
       host:
         - pip !=25.1
         - python
-        - setuptools
+        # allure-pytest requires pkg_resources from setuptools <82,
+        # see https://github.com/allure-framework/allure-python/blob/2.15.3/allure-pytest/setup.py#L3
+        - setuptools <82
         - wheel
         - setuptools-scm
       run:
