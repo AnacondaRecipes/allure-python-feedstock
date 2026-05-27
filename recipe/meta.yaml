@@ -1,5 +1,5 @@
 {% set name = "allure-python" %}
-{% set version = "2.15.3" %}
+{% set version = "2.16.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/allure-framework/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: e25166a57ca34c762c85d5f0b07efdd9bb527c1cde5bb605841e4baad35435ec
+  sha256: 9abc3da20209a89d082fc5f7bd197f5ef7438c2f88a3a4012918ffe6c48e98c4
 
 build:
   number: 0
@@ -36,6 +36,7 @@ outputs:
         - pip check
       requires:
         - pip !=25.1
+
   - name: allure-python-commons-test
     script: install.sh  # [unix]
     script: install.bat  # [win]
@@ -56,12 +57,8 @@ outputs:
         - pip check
       requires:
         - pip !=25.1
+
   - name: allure-behave
-    build:
-      # The behave pkg for py313 is not available, and it is impossible to release behave for py313,
-      # as it needs setuptools 52.0.0 with version py313 and distutils required inside.
-      # The distutils is deprecated in Python > 3.11
-      skip: true  # [py>311]
     script: install.sh  # [unix]
     script: install.bat  # [win]
     requirements:
@@ -70,7 +67,7 @@ outputs:
         - python
         - setuptools
         - wheel
-        - setuptools-scm
+        - setuptools-scm <10
       run:
         - python
         - behave >=1.2.5
@@ -96,6 +93,7 @@ outputs:
         - packaging
         - pyhamcrest
         - pygments
+
   - name: allure-nose2
     script: install.sh  # [unix]
     script: install.bat  # [win]
@@ -105,7 +103,7 @@ outputs:
         - python
         - setuptools
         - wheel
-        - setuptools-scm
+        - setuptools-scm <10
       run:
         - python
         - nose2
@@ -130,6 +128,7 @@ outputs:
         - packaging
         - pyhamcrest
         - pygments
+
   - name: allure-pytest
     script: install.sh  # [unix]
     script: install.bat  # [win]
@@ -141,7 +140,7 @@ outputs:
         # see https://github.com/allure-framework/allure-python/blob/2.15.3/allure-pytest/setup.py#L3
         - setuptools <82
         - wheel
-        - setuptools-scm
+        - setuptools-scm <10
       run:
         - python
         - pytest >=4.5.0
@@ -174,6 +173,7 @@ outputs:
         - packaging
         - pyhamcrest
         - pygments
+
   - name: allure-pytest-bdd
     script: install.sh  # [unix]
     script: install.bat  # [win]
@@ -183,7 +183,7 @@ outputs:
         - python
         - setuptools
         - wheel
-        - setuptools-scm
+        - setuptools-scm <10
       run:
         - python
         - pytest >=4.5.0
@@ -205,12 +205,14 @@ outputs:
         - pip !=25.1
         - {{ pin_subpackage('allure-python-commons-test', exact=True) }}
         - pytest <8.0
-        - pytest-bdd <8.0
+        - pytest-bdd <8.0.0  # [py<314]
+        - pytest-bdd >=8.0.0  # [py>=314]
         - docutils
         - mock
         - packaging
         - pyhamcrest
         - pygments
+
   - name: allure-robotframework
     script: install.sh  # [unix]
     script: install.bat  # [win]
@@ -220,7 +222,7 @@ outputs:
         - python
         - setuptools
         - wheel
-        - setuptools-scm
+        - setuptools-scm <10
       run:
         - python
         - robotframework
