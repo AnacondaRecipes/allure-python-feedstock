@@ -63,7 +63,7 @@ outputs:
     script: install.bat  # [win]
     requirements:
       host:
-        - pip !=25.1
+        - pip
         - python
         - setuptools
         - wheel
