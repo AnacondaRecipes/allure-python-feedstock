@@ -134,7 +134,7 @@ outputs:
     script: install.bat  # [win]
     requirements:
       host:
-        - pip !=25.1
+        - pip
         - python
         # allure-pytest requires pkg_resources from setuptools <82,
         # see https://github.com/allure-framework/allure-python/blob/2.15.3/allure-pytest/setup.py#L3
